@@ -1,7 +1,8 @@
 <?php
 
 function Ex1()
-{
+{ //Hiển thị 10 phim hàng đầu ở dạng này:
+
     $string = file_get_contents("phim.json", FILE_USE_INCLUDE_PATH);
     $brut = json_decode($string, true);
     $top = $brut["feed"]["entry"];
@@ -13,7 +14,8 @@ function Ex1()
     }
 }
 function Ex2()
-{
+{ //Thứ hạng của bộ phim "Gravity" là gì?
+
     $string = file_get_contents("phim.json", FILE_USE_INCLUDE_PATH);
     $brut = json_decode($string, true);
     $top = $brut["feed"]["entry"];
@@ -32,7 +34,8 @@ function Ex2()
     }
 }
 function Ex3()
-{
+{ //Đạo diễn của "The LEGO Movie" là gì?
+
     $string = file_get_contents("phim.json", FILE_USE_INCLUDE_PATH);
     $brut = json_decode($string, true);
     $top = $brut["feed"]["entry"];
@@ -48,7 +51,8 @@ function Ex3()
 
 }
 function Ex4()
-{
+{   //Có bao nhiêu bộ phim đã được phát hành trước năm 2000?
+
     $string = file_get_contents("phim.json", FILE_USE_INCLUDE_PATH);
     $brut = json_decode($string, true);
     $top = $brut["feed"]["entry"];
@@ -66,7 +70,8 @@ function Ex4()
 
 }
 function Ex5()
-{
+{  // Bộ phim gần đây nhất là gì? Già nhất?
+
     $string = file_get_contents("phim.json", FILE_USE_INCLUDE_PATH);
     $brut = json_decode($string, true);
     $top = $brut["feed"]["entry"];
@@ -94,6 +99,7 @@ function Ex5()
     print_r("The recent film : " . $min . "\n");
 }
 function Ex6(){
+    //Thể loại phim đại diện nhất là gì?
     $open_file = file_get_contents('phim.json', FILE_USE_INCLUDE_PATH);
     $decode_file = json_decode($open_file, true);
     $sperate_arr = $decode_file['feed']['entry'];
@@ -143,6 +149,7 @@ function Ex9(){
     foreach($top as $key => $value){
         $releasedate = ($value['im:releaseDate']['label']);
         $str = (int)substr($releasedate, 5, 2);
+        //var_dump($str);
         if(empty($arrNull[$str])){
             $arrNull[$str]=1;
         }else {
@@ -156,28 +163,26 @@ function Ex9(){
     }
  function Ex10(){
      //Top 10 bộ phim đáng xem với ngân sách hạn chế là gì?
-     $string = file_get_contents("movies.json", FILE_USE_INCLUDE_PATH);
+     $string = file_get_contents("phim.json", FILE_USE_INCLUDE_PATH);
      $brut = json_decode($string, true);
      $top = $brut["feed"]["entry"];
-
      $money = [];
-
      foreach ($top as $key => $value){
          $namefilms = $value['im:name']['label'];
          $price =$value['im:price']['label'];
          $price = trim($price,"$");
          $money[$namefilms] = $price;
-     }
-     asort($money);// Sắp xếp từ thấp đến cao
-     print_r("top 10 movies to see with a limited budget : ");
-     print_r(array_slice($money,0,10));
+         var_dump($money);
+    }
+       asort($money);// Sắp xếp từ thấp đến cao
+      // print_r("top 10 movies to see with a limited budget : ");
+       print_r(array_slice($money,0,10));
  }
-
  Ex10();
 
 
 
-Ex9();
+//Ex9();
 //Ex8();
 //Ex6();
 //Ex5();
